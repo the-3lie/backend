@@ -3,7 +3,7 @@ const db = require ('../config/db');
 exports.collectData = async (req, res) => {
     const { rfid, distance } = req.body;
 
-    // Validation des données reçues de l'ESP32
+    // mis en place des données et validation des données modéle api
     if (!rfid || distance === undefined) {
         return res.status(400).json({ error: "Données invalides" });
     }

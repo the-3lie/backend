@@ -1,10 +1,11 @@
-const mysql = require('mysql2');
+const { Pool } = require('pg');
+require('dotenv').config();
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'theking14',
-    database: 'memoirefin'
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // Indispensable pour se connecter à Render
+  }
 });
 
-module.exports = pool.promise();
+module.exports = pool;
